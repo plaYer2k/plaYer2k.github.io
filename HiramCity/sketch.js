@@ -24,75 +24,50 @@ let settlerSound;
 
 const tStart = 1220;
 const tStartDelay = 6;
+const tShifts = [1, 5, 10, 30, 60];
 let t = tStart + tStartDelay + 10;
 let scale = 1.0;
 let scaleSlider;
-
-let buttonStart, buttonPreStart, buttonPlusOne, buttonMinusOne, buttomPlusFive, buttonMinusFive, buttonPlusTen, buttonMinusTen, buttonPlusThirty, buttonMinusThirty;
 
 let campNode;
 let spawns = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  img = createImg("https://i.imgur.com/ZphSXUR.png");
+  img = createImg('textures/TheFallOfHiramCity.png');
   img.hide();
   
-  setInterval(tMinusOneSec, 1000);
+  // should create a state update etc. here
+  setInterval(() => t--, 1000);
   
   // buttons and slider
   scaleSlider = createSlider(0.5, 4.0, 1.0, 0.05);
   scaleSlider.position(45,10);
   
-  buttonStart = createButton("Start: 20:20");
+  let buttonStart = createButton("Start: 20:20");
   buttonStart.position(180,0);
   buttonStart.size(120,20);
   buttonStart.mousePressed(tSetStart);
   
-  buttonPreStart = createButton("Ready: 30s");
+  let buttonPreStart = createButton("Ready: 30s");
   buttonPreStart.position(180,20);
   buttonPreStart.size(120,20);
   buttonPreStart.mousePressed(tSetThirtySecToStart);
   
-  buttonPlusOne = createButton("+1 s");
-  buttonPlusOne.position(300,0);
-  buttonPlusOne.size(50,20);
-  buttonPlusOne.mousePressed(tPlusOneSec);
-  
-  buttonMinusOne = createButton("-1 s");
-  buttonMinusOne.position(300,20);
-  buttonMinusOne.size(50,20);
-  buttonMinusOne.mousePressed(tMinusOneSec);
-  
-  buttonPlusFive = createButton("+5 s");
-  buttonPlusFive.position(350,0);
-  buttonPlusFive.size(50,20);
-  buttonPlusFive.mousePressed(tPlusFiveSec);
-  
-  buttonMinusFive = createButton("-5 s");
-  buttonMinusFive.position(350,20);
-  buttonMinusFive.size(50,20);
-  buttonMinusFive.mousePressed(tMinusFiveSec);
-  
-  buttonPlusTen = createButton("+10 s");
-  buttonPlusTen.position(400,0);
-  buttonPlusTen.size(50,20);
-  buttonPlusTen.mousePressed(tPlusTenSec);
-  
-  buttonMinusTen = createButton("-10 s");
-  buttonMinusTen.position(400,20);
-  buttonMinusTen.size(50,20);
-  buttonMinusTen.mousePressed(tMinusTenSec);
-  
-  buttonPlusThirty = createButton("+30 s");
-  buttonPlusThirty.position(450,0);
-  buttonPlusThirty.size(50,20);
-  buttonPlusThirty.mousePressed(tPlusThirtySec);
-  
-  buttonMinusThirty = createButton("-30 s");
-  buttonMinusThirty.position(450,20);
-  buttonMinusThirty.size(50,20);
-  buttonMinusThirty.mousePressed(tMinusThirtySec);
+  tShifts.forEach((time, index) => {
+    let shift = e => t += Number.parseInt(e.target.dataset.time) || 0;
+    let button = createButton('+' + time + 's');
+    button.position(300 + 60 * index, 0);
+    button.size(60,20);
+    button.elt.dataset.time = time;
+    button.elt.addEventListener('click', shift);
+    
+    button = createButton('-' + time + 's');
+    button.position(300 + 60 * index, 20);
+    button.size(60,20);
+    button.elt.dataset.time = -time;
+    button.elt.addEventListener('click', shift);
+  });
   
   // Sound elements
   howlSound = createAudio("sounds/howl.mp3");
@@ -183,14 +158,6 @@ function setup() {
 }
 
 // Time shift functions
-function tMinusOneSec() { t--; }
-function tPlusOneSec() { t++; }
-function tMinusFiveSec() { t -= 5; }
-function tPlusFiveSec() { t += 5; }
-function tMinusTenSec() { t -= 10; }
-function tPlusTenSec() { t += 10; }
-function tMinusThirtySec() { t -= 30; }
-function tPlusThirtySec() { t += 30; }
 function tSetStart() { t = tStart; }
 function tSetThirtySecToStart() { t = tStart + tStartDelay + 30; }
 
