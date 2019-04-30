@@ -40,16 +40,27 @@ class Camera {
   }
 
   zoom(scale) {
-    // get new center position
-    let {x, y} = this.canvasToScene(width / 2,  height / 2);
-    let center = createVector(width / 2, height / 2);
+    // get old center position
+    let [x, y] = this.canvasToScene(width / 2,  height / 2);
+    let c1 = createVector(x, y);
 
-    // get difference between original and new center
+    // scale
     this.scale *= scale;
+
+    // get new center position
+    [x, y] = this.canvasToScene(width / 2,  height / 2);
+    let c2 = createVector(x, y);
+
+    // difference between old and new center
+    this.offset.sub(c1.sub(c2).div(this.scale / 2));
   }
 
   canvasToScene(x, y) {
-    return {'x': (x - this.offset.x - this.center.x) / this.scale, 'y': (y - this.offset.y - this.center.y) / this.scale};
+    return [(x - this.offset.x - this.center.x) / this.scale, (y - this.offset.y - this.center.y) / this.scale];
+  }
+
+  sceneToCanvas(x, y) {
+    return [(x + this.offset.x + this.center.x) * this.scale, (y + this.offset.y + this.center.y) * this.scale];
   }
 
   apply() {
@@ -113,7 +124,7 @@ function mouseWheel(event) {
 
 function mousePressed() {
   // get coordinates for scene
-  let {x, y} = camera.canvasToScene(mouseX, mouseY);
+  let [x, y] = camera.canvasToScene(mouseX, mouseY);
 
   // call mouse event for hiram city
   hiramCity.mousePressed(x, y);
