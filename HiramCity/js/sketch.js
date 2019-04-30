@@ -203,6 +203,11 @@ function draw() {
     }
   }
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function timeToString(t) {
   let text;
   if( t <= 0) return '     - finished -';
