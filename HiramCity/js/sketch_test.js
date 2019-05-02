@@ -5,6 +5,7 @@ class HiramCity {
     // timestamps
     this.initTime = +moment();
     this.lastDraw = +moment();
+    this.td = 0;
 
     /**
      * @type {Array<Icon>}
@@ -18,15 +19,15 @@ class HiramCity {
 
   draw() {
     // create time variables
-    let time = +moment();
-    let td = time- this.lastDraw;
-    this.lastDraw = time;
+    let now = +moment();
+    this.td = now - this.lastDraw;
+    this.lastDraw = now;
 
     // draw icons
     let previousIcon = null;
     this.icons.forEach(icon => {
       if (previousIcon) line(previousIcon.pos.x, previousIcon.pos.y, icon.pos.x, icon.pos.y);
-      icon.draw(td, this.initTime);
+      icon.draw(this.td, this.initTime);
       previousIcon = icon;
     });
   }
@@ -37,6 +38,9 @@ class Camera {
     this.scale = 1.0;
     this.offset = createVector(0, 0);
     this.center = createVector(width / 2, height / 2);
+
+    this.minScale = 1 / 2;    // min 200%
+    this.maxScale = 1 / 0.2;  // max 20%
   }
 
   zoom(scale) {
@@ -44,7 +48,7 @@ class Camera {
     this.scale *= scale;
 
     // limit scale
-    this.scale = Math.min(Math.max(this.scale, 0.2), 5);
+    this.scale = Math.min(Math.max(this.scale, this.minScale), this.maxScale);
   }
 
   canvasToScene(x, y) {
@@ -94,6 +98,7 @@ function setup() {
 function draw() {
   background(220, 215, 160);
 
+  //TODO: make speed scale dependent
   // add camera movement
   if (keyIsDown(LEFT_ARROW))  camera.offset.x += cameraSpeed;
   if (keyIsDown(RIGHT_ARROW)) camera.offset.x -= cameraSpeed;
