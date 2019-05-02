@@ -40,36 +40,36 @@ class Camera {
   }
 
   zoom(scale) {
-    // get old center position
-    let [x, y] = this.canvasToScene(width / 2,  height / 2);
-    let c1 = createVector(x, y);
-
     // scale
     this.scale *= scale;
 
-    // get new center position
-    [x, y] = this.canvasToScene(width / 2,  height / 2);
-    let c2 = createVector(x, y);
-
-    // difference between old and new center
-    this.offset.sub(c1.sub(c2).div(this.scale / 2));
+    // limit scale
+    this.scale = Math.min(10.0, Math.max(this.scale, 0.01));
   }
 
   canvasToScene(x, y) {
-    return [(x - this.offset.x - this.center.x) / this.scale, (y - this.offset.y - this.center.y) / this.scale];
+    return [(x - this.center.x) / this.scale - this.offset.x, (y - this.center.y) / this.scale - this.offset.y];
   }
 
   sceneToCanvas(x, y) {
-    return [(x + this.offset.x + this.center.x) * this.scale, (y + this.offset.y + this.center.y) * this.scale];
+    return [(x + this.center.x) * this.scale + this.offset.x, (y + this.center.y) * this.scale + this.offset.y];
   }
 
   apply() {
-    // move to center
-    translate(this.center.x, this.center.y);
     // move to offset
-    translate(this.offset.x, this.offset.y);
+    stroke('red');
+    line(0, 0, this.center.x, this.center.y);
+    translate(this.center.x, this.center.y);
+
     // scale scene
     scale(this.scale);
+    
+    // move to offset
+    stroke('blue');
+    line(0, 0, this.offset.x, this.offset.y);
+    translate(this.offset.x, this.offset.y);
+
+    stroke('black');
   }
 }
 
