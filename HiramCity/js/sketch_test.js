@@ -44,7 +44,7 @@ class Camera {
     this.scale *= scale;
 
     // limit scale
-    this.scale = Math.min(10.0, Math.max(this.scale, 0.01));
+    this.scale = Math.min(Math.max(this.scale, 0.2), 5);
   }
 
   canvasToScene(x, y) {
