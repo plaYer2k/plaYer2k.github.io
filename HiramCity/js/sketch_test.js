@@ -1,12 +1,12 @@
 class HiramCity {
-  constructor() {
+  constructor(map) {
     // timestamps
     this.initTime = +moment();
     this.lastDraw = +moment();
     this.td = 0;
     this.duration = 20 * 60 + 30;
 
-    this.map = loadImage('./textures/TheFallOfHiramCity.png');
+    this.map = map;
     /**
      * @type {Array<Icon>}
      */
@@ -52,7 +52,8 @@ class HiramCity {
 }
 
 // Global constants
-const cameraSpeed = 10;
+const cMoveSpeed = 10;
+const cZoomSpeed = 5;
 /**
  * @type {HiramCity}
  */
@@ -65,7 +66,10 @@ let camera;
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  hiramCity = new HiramCity();
+  // get map image
+  let map = loadImage('textures/TheFallOfHiramCity.png');
+
+  hiramCity = new HiramCity(map);
   camera = new Camera();
 }
 
@@ -73,10 +77,10 @@ function draw() {
   background(220, 215, 160);
 
   // add camera movement
-  if (keyIsDown(LEFT_ARROW)) camera.moveX(+cameraSpeed);
-  if (keyIsDown(RIGHT_ARROW)) camera.moveX(-cameraSpeed);
-  if (keyIsDown(UP_ARROW)) camera.moveY(+cameraSpeed);
-  if (keyIsDown(DOWN_ARROW)) camera.moveY(-cameraSpeed);
+  if (keyIsDown(LEFT_ARROW)) camera.moveX(+cMoveSpeed);
+  if (keyIsDown(RIGHT_ARROW)) camera.moveX(-cMoveSpeed);
+  if (keyIsDown(UP_ARROW)) camera.moveY(+cMoveSpeed);
+  if (keyIsDown(DOWN_ARROW)) camera.moveY(-cMoveSpeed);
 
   push();
   // apply camera
@@ -98,7 +102,7 @@ function windowResized() {
 
 function mouseWheel(event) {
   // scale camera
-  camera.zoom(event.delta < 0 ? 0.95 : 1.05);
+  camera.zoom((100 - (event.delta / Math.abs(event.delta)) * cZoomSpeed) / 100);
 
   console.log(event)
   return false;
