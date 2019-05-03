@@ -95,19 +95,18 @@ function draw() {
 function windowResized() {
   // resize canvas
   resizeCanvas(windowWidth, windowHeight);
-
   // recenter camera
   camera.center.set(width / 2, height / 2);
 }
 
+// User interaction
 function mouseWheel(event) {
   // scale camera
   camera.zoom((100 - (event.delta / Math.abs(event.delta)) * cZoomSpeed) / 100);
-
-  console.log(event)
   return false;
 }
 
+//TODO: if not on UI element
 function mousePressed() {
   // get coordinates for scene
   let [x, y] = camera.canvasToScene(mouseX, mouseY);
