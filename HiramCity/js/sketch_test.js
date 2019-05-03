@@ -14,7 +14,7 @@ class HiramCity {
   }
 
   mousePressed(x, y) {
-    this.icons.push(new Icon(x, y));
+    this.icons.push(new Icon(x, y, 10));
   }
 
   humanizedTime() {
@@ -94,6 +94,9 @@ function draw() {
   pop();
 
   //TODO: UI elements
+
+  // camera debug info
+  camera.debug();
 }
 
 function windowResized() {

@@ -103,24 +103,36 @@ class Camera {
      */
     apply() {
         // move to center
-        if (this.debug) {
-            push();
-            stroke('red');
-            line(0, 0, this.center.x, this.center.y);
-            pop();
-        }
         translate(this.center.x, this.center.y);
 
         // scale scene
         scale(this.scale);
 
         // move to offset
-        if (this.debug) {
-            push();
-            stroke('blue');
-            line(0, 0, this.offset.x, this.offset.y);
-            pop();
-        }
         translate(this.offset.x, this.offset.y);
+    }
+
+    debug() {
+        // draw lines
+        push();
+        stroke('red');
+        line(0, 0, this.center.x, this.center.y);
+        translate(this.center.x, this.center.y);
+        scale(this.scale);
+        stroke('blue');
+        line(0, 0, this.offset.x, this.offset.y);
+        pop();
+
+        // debug information
+        push();
+        textSize(14);
+        textStyle(BOLD);
+        textFont('monospace');
+        text("canvas: " + mouseX + ", " + mouseY, 10, 20);
+        let [x, y] = this.canvasToScene(mouseX, mouseY);
+        text("scene: " + x + ", " + y, 10, 40);
+        text("scale: " + this.scale, 10, 60);
+        text("offset: " + this.offset.x + ", " + this.offset.y, 10, 80);
+        pop();
     }
 }
