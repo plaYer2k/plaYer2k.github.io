@@ -4,6 +4,7 @@ class HiramCity {
     this.initTime = +moment();
     this.lastDraw = +moment();
     this.td = 0;
+    this.duration = 20 * 60;
 
     this.map = loadImage('./textures/TheFallOfHiramCity.png');
     /**
@@ -16,6 +17,12 @@ class HiramCity {
     this.icons.push(new Icon(x, y));
   }
 
+  humanizedTime() {
+    let time = Math.round((this.lastDraw - this.initTime) / 1000);
+    time = Math.max(this.duration - time, 0);
+    return Math.floor(time / 60).toString().padStart(2, '0') + ":" + (time % 60).toString().padStart(2, '0');
+  }
+
   draw() {
     // create time variables
     let now = +moment();
@@ -23,7 +30,16 @@ class HiramCity {
     this.lastDraw = now;
 
     // draw map
-    image(this.map, -this.map.width / 2, -this.map.height / 2);
+    push();
+    translate(-this.map.width / 2, -this.map.height / 2);
+    image(this.map, 0, 0);
+
+    // show time
+    textSize(14);
+    textAlign(CENTER);
+    textFont('monospace');
+    text(this.humanizedTime(), 175, 95);
+    pop();
 
     // draw icons
     let previousIcon = null;
@@ -62,11 +78,14 @@ function draw() {
   if (keyIsDown(UP_ARROW)) camera.moveY(+cameraSpeed);
   if (keyIsDown(DOWN_ARROW)) camera.moveY(-cameraSpeed);
 
+  push();
   // apply camera
   camera.apply();
-
   // draw scene
   hiramCity.draw();
+  pop();
+
+  //TODO: UI elements
 }
 
 function windowResized() {
