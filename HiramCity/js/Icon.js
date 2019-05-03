@@ -6,9 +6,6 @@ class Icon {
         // create vector for position
         this.pos = createVector(x, y);
         this.size = size;
-
-        this.lifeSpan = 0;
-        this.hide = false;
     }
 
     /**
@@ -26,7 +23,7 @@ class Icon {
      */
     draw(td, start) {
         this.lifeSpan += td;
-        this.hide = this.lifeSpan > 1000;
-        if (!this.hide) circle(this.pos.x, this.pos.y, this.size);
+
+        circle(this.pos.x, this.pos.y, this.size);
     }
 }
