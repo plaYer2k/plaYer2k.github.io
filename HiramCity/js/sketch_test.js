@@ -63,18 +63,33 @@ let hiramCity;
  */
 let camera;
 
+// load assets
+let npcData, imgMap, imgWolf, imgBrazier, imgHammer, imgPriestess, imgSettler, imgWolfLeader;
+function preload() {
+  // tables
+  npcData = loadTable('assets/npc.csv', 'csv');
+
+  // textures
+  imgMap        = loadImage('textures/TheFallOfHiramCity.png');
+  imgWolf       = loadImage("textures/wolf.png");
+  imgBrazier    = loadImage("textures/brazier.png");
+  imgHammer     = loadImage("textures/hammer.png");
+  imgPriestess  = loadImage("textures/priestess.png");
+  imgSettler    = loadImage("textures/settler.png");
+  imgWolfLeader = loadImage("textures/wolfLeader.png");
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // camera
+  // camera and its limits
   camera = new Camera();
   camera.maxOffset = 500;
   camera.minScale = 1 / 2;
   camera.maxScale = 1 / 0.2;
 
   // hiram city scene
-  let map = loadImage('textures/TheFallOfHiramCity.png');
-  hiramCity = new HiramCity(map);
+  hiramCity = new HiramCity(imgMap);
 }
 
 function draw() {
