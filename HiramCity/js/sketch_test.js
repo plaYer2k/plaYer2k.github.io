@@ -66,14 +66,15 @@ let camera;
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // get map image
-  let map = loadImage('textures/TheFallOfHiramCity.png');
-
-  hiramCity = new HiramCity(map);
+  // camera
   camera = new Camera();
   camera.maxOffset = 500;
   camera.minScale = 1 / 2;
   camera.maxScale = 1 / 0.2;
+
+  // hiram city scene
+  let map = loadImage('textures/TheFallOfHiramCity.png');
+  hiramCity = new HiramCity(map);
 }
 
 function draw() {
