@@ -44,10 +44,9 @@ class Camera {
      * @param {Number} y 
      */
     move(x = 0, y = 0) {
-        //TODO: make it scale dependent
         // adjust offset
-        this.offset.x += x;
-        this.offset.y += y;
+        this.offset.x += x / this.scale;
+        this.offset.y += y / this.scale;
 
         // limit the offset
         if (this.maxOffset) this.offset.limit(this.maxOffset);
