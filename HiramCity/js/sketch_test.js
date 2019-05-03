@@ -4,7 +4,7 @@ class HiramCity {
     this.initTime = +moment();
     this.lastDraw = +moment();
     this.td = 0;
-    this.duration = 20 * 60;
+    this.duration = 20 * 60 + 30;
 
     this.map = loadImage('./textures/TheFallOfHiramCity.png');
     /**
