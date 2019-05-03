@@ -8,6 +8,11 @@ class Icon {
         this.size = size;
     }
 
+    inIcon(x, y) {
+        let point = createVector(x, y);
+        return point.dist(this.pos) < this.size / 2;
+    }
+
     /**
      * Calculates the distance between the icons from corner to corner.
      * Negative values mean they overlap.
@@ -15,7 +20,7 @@ class Icon {
      * @param {Icon} icon
      */
     dist(icon) {
-        return this.pos.dist(icon.pos);
+        return this.pos.dist(icon.pos) - (this.size + icon.size) / 2;
     }
 
     /**
