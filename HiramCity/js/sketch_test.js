@@ -71,6 +71,9 @@ function setup() {
 
   hiramCity = new HiramCity(map);
   camera = new Camera();
+  camera.maxOffset = 500;
+  camera.minScale = 1 / 2;
+  camera.maxScale = 1 / 0.2;
 }
 
 function draw() {
