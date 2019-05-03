@@ -97,9 +97,10 @@ function windowResized() {
 }
 
 function mouseWheel(event) {
-  // scale camera (event delta is either -3 or +3)
-  camera.zoom((100 - event.delta * 2) / 100);
+  // scale camera
+  camera.zoom(event.delta < 0 ? 0.95 : 1.05);
 
+  console.log(event)
   return false;
 }
 
