@@ -2,10 +2,11 @@
  * Basic Icon class
  */
 class Icon {
-    constructor(x = 0, y = 0, size = 20) {
+    constructor(x = 0, y = 0, size = 20, img) {
         // create vector for position
         this.pos = createVector(x, y);
         this.size = size;
+        this.img = img;
     }
 
     inIcon(x, y) {
@@ -29,6 +30,9 @@ class Icon {
     draw(td, start) {
         this.lifeSpan += td;
 
-        circle(this.pos.x, this.pos.y, this.size);
+        if (this.img)
+            image(this.img, this.pos.x - this.size / 2, this.pos.y - this.size / 2, this.size, this.size);
+        else
+            circle(this.pos.x, this.pos.y, this.size);
     }
 }
