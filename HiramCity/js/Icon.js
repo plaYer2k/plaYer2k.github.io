@@ -7,11 +7,18 @@ class Icon {
         this.pos = createVector(x, y);
         this.size = size;
         this.img = img;
+
+        this.lifeSpan = 0;
+        this.hidden = false;
     }
 
     inIcon(x, y) {
         let point = createVector(x, y);
         return point.dist(this.pos) < this.size / 2;
+    }
+
+    onClick() {
+        this.lifeSpan = -1000;
     }
 
     /**
@@ -24,15 +31,23 @@ class Icon {
         return this.pos.dist(icon.pos) - (this.size + icon.size) / 2;
     }
 
+    update(td, start) {
+        this.lifeSpan += td;
+        this.hidden = this.lifeSpan < 0;
+    }
+
     /**
      * Draws the icon with p5.js functions.
      */
-    draw(td, start) {
-        this.lifeSpan += td;
-
-        if (this.img)
+    draw() {
+        // don't draw if hidden
+        if (this.hidden) return;
+        if (this.img) {
+            // draw icon image scaled to the size of the icon
             image(this.img, this.pos.x - this.size / 2, this.pos.y - this.size / 2, this.size, this.size);
-        else
+        } else {
+            // draw generic placeholder
             circle(this.pos.x, this.pos.y, this.size);
+        }
     }
 }

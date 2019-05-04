@@ -1,5 +1,9 @@
 class HiramCity {
-  constructor(map, npcs) {
+  /**
+   * @param {p5.Image} map
+   * @param {Array<Icon>} icons
+   */
+  constructor(map, icons) {
     // timestamps
     this.initTime = +moment();
     this.lastDraw = +moment();
@@ -7,13 +11,11 @@ class HiramCity {
     this.duration = 20 * 60 + 30;
 
     this.map = map;
-    //TODO: make this prettier
-    this.npcs = npcs;
-    this.npcs.forEach(npc => console.log(npc));
     /**
      * @type {Array<Icon>}
      */
-    this.icons = new Array();
+    this.icons = icons;
+    this.icons.forEach(icon => console.log(icon));
   }
 
   humanizedTime() {
@@ -22,12 +24,19 @@ class HiramCity {
     return Math.floor(time / 60).toString().padStart(2, '0') + ":" + (time % 60).toString().padStart(2, '0');
   }
 
-  draw() {
+  update() {
     // create time variables
     let now = +moment();
     this.td = now - this.lastDraw;
     this.lastDraw = now;
 
+    // draw icons
+    this.icons.forEach(icon => icon.update(this.td, this.initTime));
+
+    return this;
+  }
+  
+  draw() {
     // draw map
     push();
     // get corner point of map
@@ -41,14 +50,20 @@ class HiramCity {
     text(this.humanizedTime(), 175, 95);
     pop();
 
-    // draw npc
-    this.npcs.forEach(npc => npc.draw());
+    //TODO: maybe adjust here with offset and scale?
+    // draw icons
+    this.icons.forEach(icon => icon.draw());
+
+    return this;
   }
 
   mousePressed(x, y) {
-    let index = this.npcs.findIndex(npc => npc.inIcon(x, y));
-    console.log('target: ', index);
-    if (index >= 0) this.npcs.splice(index, 1);
+    // get index of clicked icon
+    this.icons.reverse();
+    let icon = this.icons.find(icon => icon.inIcon(x, y) && !icon.hidden);
+    this.icons.reverse();
+
+    if (icon) icon.onClick();
   }
 }
 
@@ -198,11 +213,11 @@ function setup() {
 
   // hiram city scene
   npcData = npcData.map(data => { // transform data to icons
+    // preprocessing
     let [x, y] = [
       data[1] * dataScale + dataOffsetX,
       - data[2] * dataScale + dataOffsetY
     ];
-    let img;
     //TODO: special icons per entry
     switch(data[0]) {
       case 502: // priestess
@@ -240,7 +255,7 @@ function draw() {
   // apply camera
   camera.apply();
   // draw scene
-  hiramCity.draw();
+  hiramCity.update().draw();
   pop();
 
   //TODO: UI elements
