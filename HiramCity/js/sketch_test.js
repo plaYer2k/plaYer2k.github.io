@@ -30,7 +30,7 @@ class HiramCity {
     this.td = now - this.lastDraw;
     this.lastDraw = now;
 
-    // draw icons
+    // update icons
     this.icons.forEach(icon => icon.update(this.td, this.initTime));
 
     return this;
@@ -52,7 +52,11 @@ class HiramCity {
 
     //TODO: maybe adjust here with offset and scale?
     // draw icons
+    push();
+    fill(0, 0, 255, 63);
+    noStroke();
     this.icons.forEach(icon => icon.draw());
+    pop();
 
     return this;
   }
