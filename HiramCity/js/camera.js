@@ -35,6 +35,7 @@ class Camera {
         // limit scale
         if (this.minScale) this.scale = Math.max(this.scale, this.minScale)
         if (this.maxScale) this.scale = Math.min(this.scale, this.maxScale);
+        this.move();
     }
 
     /**
