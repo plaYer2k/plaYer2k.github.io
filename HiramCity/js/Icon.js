@@ -42,12 +42,7 @@ class Icon {
     draw() {
         // don't draw if hidden
         if (this.hidden) return;
-        if (this.img) {
-            // draw icon image scaled to the size of the icon
-            image(this.img, this.pos.x - this.size / 2, this.pos.y - this.size / 2, this.size, this.size);
-        } else {
-            // draw generic placeholder
-            circle(this.pos.x, this.pos.y, this.size);
-        }
+        circle(this.pos.x, this.pos.y, this.size);
+        if (this.img) image(this.img, this.pos.x - this.size / 2, this.pos.y - this.size / 2, this.size, this.size);
     }
 }
