@@ -50,8 +50,10 @@ class Camera {
 
         // limit the offset
         if (this.maxOffset) this.offset.limit(this.maxOffset);
-        if (this.maxOffsetX) this.offset.x = Math.max(Math.min(this.offset.x, this.maxOffsetX), -this.maxOffsetX);
-        if (this.maxOffsetY) this.offset.y = Math.max(Math.min(this.offset.y, this.maxOffsetY), -this.maxOffsetY);
+        let maxOffsetX = Math.max(this.maxOffsetX * this.scale - this.center.x, 0) / this.scale;
+        let maxOffsetY = Math.max(this.maxOffsetY * this.scale - this.center.y, 0) / this.scale;
+        if (this.maxOffsetX) this.offset.x = Math.max(Math.min(this.offset.x, maxOffsetX), -maxOffsetX);
+        if (this.maxOffsetY) this.offset.y = Math.max(Math.min(this.offset.y, maxOffsetY), -maxOffsetY);
     }
 
     /**
@@ -121,6 +123,16 @@ class Camera {
         scale(this.scale);
         stroke('blue');
         line(0, 0, this.offset.x, this.offset.y);
+        translate(this.offset.x, this.offset.y);
+        stroke('green');
+        if (this.maxOffsetX) {
+            line(this.maxOffsetX, - height / 2, this.maxOffsetX, height / 2);
+            line(-this.maxOffsetX, - height / 2, -this.maxOffsetX, height / 2);
+        }
+        if (this.maxOffsetY) {
+            line(- width / 2, this.maxOffsetY, width / 2, this.maxOffsetY);
+            line(- width / 2, -this.maxOffsetY, width / 2, -this.maxOffsetY);
+        }
         pop();
 
         // debug information
