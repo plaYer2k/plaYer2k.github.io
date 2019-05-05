@@ -134,6 +134,12 @@ class Camera {
             line(- width / 2, this.maxOffsetY, width / 2, this.maxOffsetY);
             line(- width / 2, -this.maxOffsetY, width / 2, -this.maxOffsetY);
         }
+        if (this.maxOffset) {
+            push();
+            noFill();
+            circle(0, 0, this.maxOffset * 2);
+            pop();
+        }
         pop();
 
         // debug information
