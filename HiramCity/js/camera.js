@@ -51,8 +51,8 @@ class Camera {
 
         // limit the offset
         if (this.maxOffset) this.offset.limit(this.maxOffset);
-        let maxOffsetX = Math.max(this.maxOffsetX * this.scale - this.center.x, 0) / this.scale;
-        let maxOffsetY = Math.max(this.maxOffsetY * this.scale - this.center.y, 0) / this.scale;
+        let maxOffsetX = Math.max(this.maxOffsetX - this.center.x / this.scale, 0);
+        let maxOffsetY = Math.max(this.maxOffsetY - this.center.y / this.scale, 0);
         if (this.maxOffsetX) this.offset.x = Math.max(Math.min(this.offset.x, maxOffsetX), -maxOffsetX);
         if (this.maxOffsetY) this.offset.y = Math.max(Math.min(this.offset.y, maxOffsetY), -maxOffsetY);
     }
