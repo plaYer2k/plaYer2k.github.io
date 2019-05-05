@@ -118,14 +118,14 @@ class Camera {
     debug() {
         // draw lines
         push();
-        stroke('red');
+        stroke(255, 0, 0, 127);
         line(0, 0, this.center.x, this.center.y);
         translate(this.center.x, this.center.y);
         scale(this.scale);
-        stroke('blue');
+        stroke(0, 0, 255, 127);
         line(0, 0, this.offset.x, this.offset.y);
         translate(this.offset.x, this.offset.y);
-        stroke('green');
+        stroke(0, 255, 0, 127);
         if (this.maxOffsetX) {
             line(this.maxOffsetX, - height / 2, this.maxOffsetX, height / 2);
             line(-this.maxOffsetX, - height / 2, -this.maxOffsetX, height / 2);
