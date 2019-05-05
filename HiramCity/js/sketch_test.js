@@ -205,7 +205,6 @@ function setup() {
   camera = new Camera();
   camera.maxOffsetX = imgMap.width / 2;
   camera.maxOffsetY = imgMap.height / 2;
-  console.log(camera);
   // scale image to fit the window
   camera.zoom(Math.min(windowWidth / imgMap.width, windowHeight / imgMap.height));
   camera.minScale = 1 / 1.5;
