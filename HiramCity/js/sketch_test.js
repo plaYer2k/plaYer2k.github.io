@@ -209,10 +209,6 @@ function setup() {
   camera = new Camera();
   camera.maxOffsetX = imgMap.width / 2;
   camera.maxOffsetY = imgMap.height / 2;
-  // scale image to fit the window
-  camera.zoom(Math.min(windowWidth / imgMap.width, windowHeight / imgMap.height));
-  camera.minScale = 1 / 1.5;
-  camera.maxScale = 1 / 0.2;
 
   // hiram city scene
   npcData = npcData.map(data => { // transform data to icons
@@ -243,6 +239,8 @@ function setup() {
     }
   });
   hiramCity = new HiramCity(imgMap, npcData);
+
+  windowResized();
 }
 
 function draw() {
@@ -270,8 +268,11 @@ function draw() {
 function windowResized() {
   // resize canvas
   resizeCanvas(windowWidth, windowHeight);
-  // recenter camera
+  // readjust camera
   camera.center.set(width / 2, height / 2);
+  camera.minScale = Math.min(windowWidth / imgMap.width, windowHeight / imgMap.height);
+  camera.maxScale = camera.minScale * 4;
+  camera.zoom()
 }
 
 // User interaction

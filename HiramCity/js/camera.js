@@ -28,7 +28,7 @@ class Camera {
      * 
      * @param {double} scale 
      */
-    zoom(scale) {
+    zoom(scale = 1.0) {
         // scale
         this.scale *= scale;
 
