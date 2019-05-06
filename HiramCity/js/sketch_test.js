@@ -8,7 +8,7 @@ class HiramCity {
     this.initTime = +moment();
     this.lastDraw = +moment();
     this.td = 0;
-    this.duration = 20 * 60 + 30;
+    this.duration = (20 * 60 + 30) * 1000;
 
     this.map = map;
     /**
@@ -16,12 +16,6 @@ class HiramCity {
      */
     this.icons = icons;
     this.icons.forEach(icon => console.log(icon));
-  }
-
-  humanizedTime() {
-    let time = Math.round((this.lastDraw - this.initTime) / 1000);
-    time = Math.max(this.duration - time, 0);
-    return Math.floor(time / 60).toString().padStart(2, '0') + ":" + (time % 60).toString().padStart(2, '0');
   }
 
   update() {
@@ -36,6 +30,11 @@ class HiramCity {
     return this;
   }
   
+  timeToString(time) {
+    time = Math.round(time / 1000);
+    return Math.floor(time / 60).toString().padStart(2, '0') + ":" + (time % 60).toString().padStart(2, '0');
+  }
+  
   draw() {
     // draw map
     push();
@@ -47,7 +46,9 @@ class HiramCity {
     textSize(14);
     textAlign(CENTER);
     textFont('monospace');
-    text(this.humanizedTime(), 175, 95);
+    let time = this.lastDraw - this.initTime;
+    time = Math.max(this.duration - time, 0);
+    text(this.timeToString(time), 175, 95);
     pop();
 
     //TODO: maybe adjust here with offset and scale?
@@ -228,7 +229,7 @@ function setup() {
       case 18664: // broken farm cart
         return new Icon(x, y, 10, imgHammer);
       case 18703: // brazier
-        return new Icon(x, y, 10, imgBrazier);
+        return new BrazierIcon(x, y);
       case 18698: // Wolf leader
         return new Icon(x, y, 15, imgWolfLeader);
       case 18674: // hiram treant
