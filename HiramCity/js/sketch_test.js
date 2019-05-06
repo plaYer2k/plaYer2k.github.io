@@ -92,7 +92,7 @@ let npcData, imgMap, imgWolf, imgBrazier, imgHammer, imgPriestess, imgSettler, i
 function preload() {
   // tables
   npcData = loadJSON('./data/npc.json');
-  console.log(npcData, npcData.data);
+  console.log(npcData, npcData["data"]);
   
   // textures
   imgMap        = loadImage('./textures/TheFallOfHiramCity.png');
