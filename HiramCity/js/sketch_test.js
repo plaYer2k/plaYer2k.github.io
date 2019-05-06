@@ -92,7 +92,6 @@ let npcData, imgMap, imgWolf, imgBrazier, imgHammer, imgPriestess, imgSettler, i
 function preload() {
   // tables
   npcData = loadJSON('./data/npc.json');
-  console.log(npcData, npcData["data"]);
   
   // textures
   imgMap        = loadImage('./textures/TheFallOfHiramCity.png');
@@ -113,7 +112,7 @@ function setup() {
   camera.maxOffsetY = imgMap.height / 2;
 
   // hiram city scene
-  npcData = npcData.map(data => { // transform data to icons
+  npcData = Object.values(npcData).map(data => { // transform data to icons
     // preprocessing
     let [x, y] = [
       data[1] * dataScale + dataOffsetX,
