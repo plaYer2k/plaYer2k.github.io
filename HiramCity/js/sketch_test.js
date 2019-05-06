@@ -91,7 +91,7 @@ let camera;
 let npcData, imgMap, imgWolf, imgBrazier, imgHammer, imgPriestess, imgSettler, imgWolfLeader;
 function preload() {
   // tables
-  npcData = loadJSON('./assets/npc.json');
+  npcData = loadJSON('./data/npc.json');
   
   // textures
   imgMap        = loadImage('./textures/TheFallOfHiramCity.png');
