@@ -91,8 +91,7 @@ let camera;
 let npcData, imgMap, imgWolf, imgBrazier, imgHammer, imgPriestess, imgSettler, imgWolfLeader;
 function preload() {
   // tables
-  npcData = loadJSON('./data/npc.json');
-  npcData = Object.keys(npcData).map(key => npcData[key]);
+  npcData = Object.values(loadJSON('./data/npc.json'));
   console.log(npcData);
   
   // textures
