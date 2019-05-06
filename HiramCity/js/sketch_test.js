@@ -93,6 +93,7 @@ function preload() {
   // tables
   npcData = loadJSON('./data/npc.json');
   npcData = Object.keys(npcData).map(key => npcData[key]);
+  console.log(npcData);
   
   // textures
   imgMap        = loadImage('./textures/TheFallOfHiramCity.png');
