@@ -10,7 +10,7 @@ class BrazierIcon extends Icon {
     onClick() {
         this.lifeSpan += this.logTime;
     }
-
+    
     update(td, start) {
         this.lifeSpan -= td;
         this.lifeSpan = Math.max(0, this.lifeSpan);
@@ -24,17 +24,21 @@ class BrazierIcon extends Icon {
     }
 
     draw() {
-        // don't draw if hidden
-        if (this.hidden) return;
+        // draw icon
         image(this.img, this.pos.x - this.size / 2, this.pos.y - this.size / 2, this.size, this.size);
         
         push();
-        textSize(this.size / 1.5);
-        textAlign(CENTER);
-        textFont('monospace');
-        fill(255 * (1 - map(this.lifeSpan, 0, this.duration, 0, 1, true)), 0, 0);
-        if(this.isDone) fill('green');
-        text(this.timeToString(this.lifeSpan), this.pos.x, this.pos.y + this.size);
+            // text settings
+            textSize(this.size / 1.5);
+            textAlign(CENTER);
+            textFont('monospace');
+
+            // text color
+            fill(255 * (1 - map(this.lifeSpan, 0, this.duration, 0, 1, true)), 0, 0);
+            if(this.isDone) fill('green');
+
+            // display time under icon
+            text(this.timeToString(this.lifeSpan), this.pos.x, this.pos.y + this.size);
         pop();
     }
 }
