@@ -112,7 +112,6 @@ function setup() {
   camera.maxOffsetY = imgMap.height / 2;
 
   // hiram city scene
-  console.log(npcData);
   npcData = Object.values(npcData).map(data => { // transform data to icons
     // preprocessing
     let [x, y] = [
