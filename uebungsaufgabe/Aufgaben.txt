@@ -1,0 +1,59 @@
+Wiederholung 1:
+
+1) Allgemeine Formatierung der gesamten Site
+1a) Setze die Schriftart-Familie für die gesamte Site auf 'font-family: sans-serif'.
+1b) Setze die Schriftfarbe für die gesamte Site auf 'schwarz'.
+1c) Setzt die maximale Breite aller Seiten auf '65em'.
+
+2) Allgemeine Formatierung der Bereiche der Website 
+2a) Hinterlege die Bereiche 'artikel' und 'aside' mit 'lightyellow'.
+2b) Setze für diese Bereiche einen Rand von '1px' mit durchgehender Linie.
+2c) Der Abstand zwischen Rand und Rahmen soll eine Zeilenhöhe betragen.
+
+3) Formatierung von Logo und Überschrift H1
+3a) Füge das Logo der Fakultät 73 vor der Überschrift ein 'img/logo.gif'.
+3b) Verkleinere das Logo auf '10%' in der Höhe und Breite.
+3c) Zwischen Logo und Überschrift einen Abstand von '30px' einfügen.
+3d) Formatiere die Überschrift mittig über der Website.
+3e) Das Logo und die Überschrift sollen horizontal mittig stehen.
+
+4) Formatierung des Bildes im Artikel
+4a) Formatiere das Bild auf '33%' seiner Breite.
+4b) Das Bild soll rechts vom Text stehen und der Text soll es umfließen.
+4c) Erstelle einen Freiraum von '0.5em' um das Bild, damit der Text nicht an das Bild stößt.
+4d) Der unterste Absatz dieses Artikels soll nicht um das Bild fließen, sondern vollständig darunter stehen.
+Alternativ:
+4d) beim letzten Absatz dieses Artikels handelt es sich um eine besonderheit für die F73.
+  Alle diese Absätze sollen fett fervorgehoben werden und nicht um das Bild fließen.
+  Zusätzlich soll dieser Absatz durch eine Linie oben und unten vom restlichen Text abgetrennt werden.
+4e) Das Wort 'Fakultät F73' soll an allen Stellen in 'rot' und fett zu setzen.
+
+5) Navigation
+5a) Ergänze eine Navigation von der Startseite im Bereich 'header' auf die drei anderen Seiten in einem eigenen <NAV> Bereich.
+5b) Füge einen grauen Kasten um die Navigationslinks mit etwas Abstand zum Text.
+5c) Verteile die Navigationslinks gleichmäßig über die Seite.
+5d) Ergänze einen Menüpunkt auf der Startseite, der zu einem Anker auf die Überschrift 'Fakultät 73 weist'.
+5e) Prüfe, ob die Navigation auf alle anderen Seiten und zurück funktoniert.
+5f) Prüfe, ob das Layout auf allen Seiten einheitlich aussieht.
+
+6) Kopfzeile
+6a) Die Kopfzeile soll ein grauer Balken über die ganze Seite werden.
+6b) Die Kopfzeile soll einen schwarzen Rand mit '5px' erhalten.
+6c) Die Navigationsleiste soll über die gesamte Header-Breite laufen.
+
+7) Fußzeile
+7a) Der Link auf den Kontakt soll linksbündig stehen, der Copyright-Hinweis rechtsbündig.
+7b) Über der Fußzeile soll eine horizontale Linie verlaufen.
+		Verwende NICHT <hr>!
+		
+8) Formatierung der Textblöcke
+8a)Der Bereich 'aside' soll links vom Artkel stehen.
+   Wenn möglich, soll der html-Code nicht verändert werden!
+	 
+9) Formatierung der Bilddarstellung auf der Inhaltsseite
+9a) Formatiere die Bilder als 'inline-block' mit 3 Bilder je Zeile.
+9b) Der Abstand um jedes Bild beträgt '0.2em'.
+9c) Die Bildunterschrift soll kursiv dargestellt werden.
+
+	 
+

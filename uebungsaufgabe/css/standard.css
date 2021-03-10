@@ -1,0 +1,84 @@
+/**********************************
+ *   CSS für die Übungsaufgabe    *
+ **********************************/
+
+html {
+	font-family: sans-serif;
+	color: black;
+	max-width: 65em;
+}
+
+aside, article {
+	background-color: lightyellow;
+	border: solid 1px;
+	margin: 1em 1em;
+}
+
+#logo {
+	max-width: 10%;
+	max-height: auto;
+	margin-bottom: 30px;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+body header h1 {
+	text-align: center;
+}
+
+body article p img {
+	max-width: 33%;
+	max-height: auto;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	float: left;
+	padding: 0.5em;
+}
+
+.f73-absatz {
+	text-align: left;
+	float: right;
+}
+f73 {
+	font-weight: bold;
+	color: red;
+}
+
+#navBar {
+	border-style: solid;
+	border-width: 2px;
+	border-color: #999;
+	background-color: #daffb3;
+	display: flex;
+	text-align: center;
+	zoom
+}
+
+#navBar a {
+	padding: 10px;
+}
+
+#navBar a:hover {
+	background-color: #b5ff66;
+	color: #2a9;
+}
+
+body header {
+	border-style: solid;
+	border-width: 5px;
+	border-color: black;
+	background-color: #bbb;
+}
+
+footer {
+	border-style: solid none none none;
+	border-width: 1px;
+}
+footer a {
+	text-align: left;
+}
+.copyright {
+	text-align: right;
+}
